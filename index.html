@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>floristeria</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+body{
+    margin:0;
+    background:#2f2f2f;
+    font-family:'Segoe UI', sans-serif;
+}
+
+/* colores */
+.bg-cafe{background:#4E342E;}
+.text-beige{color:#F5EFE6;}
+.text-cafe{color:#4E342E;}
+
+/* NAVBAR */
+.navbar-brand{
+    font-weight:600;
+    font-size:22px;
+}
+
+/* HERO VIDEO */
+#hero{
+    height:100vh;
+    position:relative;
+    overflow:hidden;
+}
+#hero video{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+#hero::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,.4);
+}
+#hero .hero-text{
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:2;
+    color:#F5EFE6;
+    text-align:center;
+}
+
+/* MENU */
+#menu{
+    padding:60px 0;
+}
+
+/* animación revista */
+.fade-in{
+    animation:fadeZoom 1s ease forwards;
+}
+@keyframes fadeZoom{
+    from{opacity:0; transform:scale(.95);}
+    to{opacity:1; transform:scale(1);}
+}
+
+/* CARDS */
+.menu-card{
+    background:#F5EFE6;
+    border-radius:14px;
+    overflow:hidden;
+    cursor:pointer;
+    transition:.4s;
+}
+.menu-card:hover{
+    transform:scale(1.05);
+}
+.menu-card img{
+    width:100%;
+    height:260px;
+    object-fit:cover;
+}
+.menu-card .card-body{
+    background:#D7C4A3;
+    text-align:center;
+}
+
+/* ZOOM */
+#zoomOverlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.85);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:999;
+}
+#zoomOverlay .card{
+    max-width:600px;
+}
+
+/* CONTACTO */
+#contacto{
+    background:#F5EFE6;
+    padding:60px 0;
+}
+
+/* FOOTER */
+footer{
+    background:#4E342E;
+    color:#F5EFE6;
+    text-align:center;
+    padding:25px 0;
+}
+footer img,
+.navbar img{
+    transition:.3s;
+}
+footer img:hover,
+.navbar img:hover{
+    transform:scale(1.2);
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg bg-cafe navbar-dark fixed-top">
+    <div class="container d-flex align-items-center">
+
+        <!-- WhatsApp -->
+        <a href="https://wa.me/573209304898" target="_blank" class="me-3">
+            <img src="whatsapp.png" width="28" alt="WhatsApp">
+        </a>
+
+        <!-- Marca -->
+        <a class="navbar-brand" href="#">FLORISTERIA</a>
+
+    </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+    <video autoplay muted loop>
+        <source src="video.mp4" type="video/mp4">
+    </video>
+    <div class="hero-text">
+        <div>
+            <h1>BIENVENIDOS</h1>
+            <p>Arreglos florales para toda ocasión</p>
+        </div>
+    </div>
+</section>
+
+<!-- MENU -->
+<div id="menu" class="container fade-in">
+    <h2 class="text-center text-beige mb-5">CATÁLOGO</h2>
+
+    <div class="row g-4">
+        <script>
+        const productos = [
+            ["1.jpg","Bucket novia","$17.000"],
+            ["2.jpg","Bucket quinceaños","$17.500"],
+            ["3.jpg","Bucket novia","$17.500"],
+            ["4.jpg","Bucket","$18.500"],
+            ["5.jpg","Ramo","$19.000"],
+            ["6.jpg","Ramo","$22.000"],
+            ["7.png","Ramo","$18.800"],
+            ["8.png","Dia del padre","$20.000"],
+            ["9.png","Ramo Rosas","$21.000"],
+            ["10.png","Dia del hombre","$18.500"],
+            ["11.png","Aniversario","$17.500"],
+            ["12.png","Cumpleaños","$10.500"]
+        ];
+
+        document.write(
+            productos.map(p=>`
+            <div class="col-md-4">
+                <div class="card menu-card" onclick="zoomCard(this)">
+                    <img src="${p[0]}">
+                    <div class="card-body">
+                        <h5>${p[1]}</h5>
+                        <p>${p[2]}</p>
+                    </div>
+                </div>
+            </div>
+            `).join('')
+        );
+        </script>
+    </div>
+</div>
+
+<!-- CONTACTO -->
+<section id="contacto">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Contacto</h3>
+                <p>📞 3209304898</p>
+                <p>📧 emprendedorescreativos154@gmail.com</p>
+            </div>
+            <div class="col-md-6">
+                <h3>Ubicación</h3>
+                <p>📍 Calle Principal #123</p>
+                <iframe 
+                    src="https://maps.google.com/maps?q=bogota&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                    width="100%" height="200" style="border:0;">
+                </iframe>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="mb-3 d-flex justify-content-center gap-4">
+        <a href="https://www.facebook.com/amcafe" target="_blank">
+            <img src="facebook.png" width="28" alt="Facebook">
+        </a>
+        <a href="https://www.instagram.com/amcafe" target="_blank">
+            <img src="instagram.png" width="28" alt="Instagram">
+        </a>
+    </div>
+    © 2026 Floristeria· Todos los derechos reservados
+</footer>
+
+<!-- ZOOM -->
+<div id="zoomOverlay" onclick="closeZoom()">
+    <div id="zoomContent"></div>
+</div>
+
+<script>
+const zoomOverlay = document.getElementById("zoomOverlay");
+const zoomContent = document.getElementById("zoomContent");
+
+function zoomCard(card){
+    zoomContent.innerHTML = card.outerHTML;
+    zoomOverlay.style.display="flex";
+}
+
+function closeZoom(){
+    zoomOverlay.style.display="none";
+}
+</script>
+
+</body>
+</html>
